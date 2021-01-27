@@ -176,7 +176,7 @@ namespace Core
 
 			out.close();
 		}
-
+		
 		void retriveNsave(ObjectModel::Root* r)
 		{
 			int16_t iterator = 0;
@@ -188,8 +188,6 @@ namespace Core
 
 	}
 
-	// 0 1 2 3
-	// 0x00 0x00 0x00 0x5
 	template<typename T>
 	void encode(std::vector<int8_t>* buffer, int16_t* iterator, T value)
 	{
@@ -210,7 +208,7 @@ namespace Core
 	template<>
 	void encode<double>(std::vector<int8_t>* buffer, int16_t* iterator, double value)
 	{
-		int32_t result = *reinterpret_cast<int64_t*>(&value);
+		int64_t result = *reinterpret_cast<int64_t*>(&value);
 		encode<int64_t>(buffer, iterator, result);
 	}
 
@@ -237,7 +235,6 @@ namespace Core
 
 namespace ObjectModel
 {
-	//definition
 	Root::Root()
 		:
 		name("unknown"),
@@ -261,7 +258,7 @@ namespace ObjectModel
 
 	void Root::pack(std::vector<int8_t>*, int16_t*)
 	{
-		//maybe pure virtual??
+	//....
 	}
 
 
@@ -275,7 +272,7 @@ namespace ObjectModel
 		size += sizeof type;
 	}
 
-
+	
 
 
 	void Primitive::pack(std::vector<int8_t>* buffer, int16_t* iterator)
@@ -572,7 +569,7 @@ int main(int argc, char** argv)
 
 	Test.addEntitie(&Test2);
 	Core::Util::retriveNsave(&Test);
-
+	
 #endif
 
 #if 1
@@ -591,3 +588,4 @@ int main(int argc, char** argv)
 	(void)argc;
 	(void)argv;
 	return 0;
+}
