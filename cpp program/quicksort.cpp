@@ -8,8 +8,9 @@ int ShellSortAscendent(int a[], int n)
         for (int i = dec; i < n; i += 1)
         {
             int j, temp = a[i]; // temporar
-            for (j = i; j >= dec && a[j - dec] > temp; j -= dec)
+            for (j = i; j >= dec && a[j - dec] < temp; j -= dec)
                 a[j] = a[j - dec];
+
             a[j] = temp;
         }
     }
@@ -29,7 +30,7 @@ int partitionare(int X[], char start, char finish)
     for (int j = start; j <= finish - 1; j++)
     {
         // Dacă elementul curent este mai mare decât pivotul, creștem elementul start. Schimbăm
-        if (X[j] >= pivot)
+        if (X[j] <= pivot)
         {
             i++;
             schimb(&X[i], &X[j]);
@@ -66,11 +67,11 @@ int main()
     AfisareArray(a, n);
     // Aplicăm functia pentru sortarea ascendentă
     ShellSortAscendent(a, n);
-    cout << "\n\nShellSort ascendent:\nArray-ul sortat: ";
+    cout << "\n\nShellSort descendent:\nArray-ul sortat: ";
     AfisareArray(a, n);
     cout << endl;
     // Aplicăm functia pentru sortarea deascendentă
     QuickSortDescendent(a, 0, n - 1);
-    cout << "\nQuickSort descendent:\nArray-ul sortat: ";
+    cout << "\nQuickSort ascendent:\nArray-ul sortat: ";
     AfisareArray(a, n);
 }
